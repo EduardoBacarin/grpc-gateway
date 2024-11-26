@@ -1,0 +1,175 @@
+syntax = "proto3";
+package kontrl;
+
+option go_package = "github.com/eduardobacarin/tutorialgrpc/gen/flow";
+import "google/api/annotations.proto";
+
+service Flow {
+  rpc InboxDelete(MsgDeleteIn) returns (MsgDeleteOut) {
+    option (google.api.http) = {
+            delete: "/api/inbox/{ids}"
+    };
+  }
+  rpc InboxFind(MsgFindIn) returns (InboxGetOut) {
+    option (google.api.http) = {
+            get: "/api/inbox/find"
+    };
+  }
+  rpc InboxGet(MsgGetIn) returns (InboxGetOut) {
+    option (google.api.http) = {
+            get: "/api/inbox/{ids}"
+    };
+  }
+  rpc InboxRegister(InboxRegisterIn) returns (InboxRegisterOut) {
+    option (google.api.http) = {
+            post: "/api/inbox"
+            body: "*"
+    };
+  }
+  rpc OutboxDelete(MsgDeleteIn) returns (MsgDeleteOut) {
+    option (google.api.http) = {
+            delete: "/api/outbox/{ids}"
+    };
+  }
+  rpc OutboxFind(MsgFindIn) returns (OutboxGetOut) {
+    option (google.api.http) = {
+            get: "/api/outbox/find"
+    };
+  }
+  rpc OutboxGet(MsgGetIn) returns (OutboxGetOut) {
+    option (google.api.http) = {
+            get: "/api/outbox/{ids}"
+    };
+  }
+  rpc OutboxRegister(OutboxRegisterIn) returns (OutboxRegisterOut) {
+    option (google.api.http) = {
+            post: "/api/outbox"
+            body: "*"
+    };
+  }
+  rpc ResponseDelete(MsgDeleteIn) returns (MsgDeleteOut) {
+    option (google.api.http) = {
+            delete: "/api/response/{ids}"
+    };
+  }
+  rpc ResponseRegister(ResponseRegisterIn) returns (ResponseRegisterOut) {
+    option (google.api.http) = {
+            post: "/api/response"
+            body: "*"
+    };
+  }
+  rpc TargetDelete(MsgDeleteIn) returns (MsgDeleteOut) {
+    option (google.api.http) = {
+            delete: "/api/target/{ids}"
+    };
+  }
+  rpc TargetRegister(TargetRegisterIn) returns (TargetRegisterOut) {
+
+  }
+}
+
+enum HTTPMethod {
+  POST = 0;
+  GET = 1;
+  PATCH = 2;
+  PUT = 3;
+  DELETE = 4;
+  HEAD = 5;
+  OPTIONS = 6;
+}
+
+message InboxRecord {
+  string id = 1;
+  string name = 2;
+  bool pusher = 3;
+  map<string, string> head_check = 4;
+  string pusher_url = 20;
+  map<string, string> pusher_head = 21;
+  int32 info_hits = 40;
+  string info_created_at = 41;
+  string info_updated_at = 42;
+}
+
+message OutboxRecord {
+  string id = 1;
+  string name = 2;
+  int32 retry = 3;
+  repeated string targets = 20;
+  repeated string responses = 21;
+  repeated string inboxes = 22;
+  int32 info_hits = 40;
+  string info_created_at = 41;
+  string info_updated_at = 42;
+}
+
+message MsgDeleteIn {
+  repeated string ids = 1;
+}
+
+message MsgDeleteOut {
+  bool ok = 1;
+}
+
+message MsgFindIn {
+  map<string, string> query = 1;
+}
+
+message MsgGetIn {
+  repeated string ids = 1;
+}
+
+message InboxGetOut {
+  repeated InboxRecord inboxes = 1;
+}
+
+message InboxRegisterIn {
+  string name = 1;
+  bool pusher = 2;
+  map<string, string> head_check = 3;
+  string pusher_url = 20;
+  map<string, string> pusher_head = 21;
+}
+
+message InboxRegisterOut {
+  string id = 1;
+  string url = 2;
+}
+
+message OutboxGetOut {
+  repeated OutboxRecord inboxes = 1;
+}
+
+message OutboxRegisterIn {
+  string name = 1;
+  int32 retry = 2;
+  repeated string targets = 20;
+  repeated string responses = 21;
+  repeated string inboxes = 22;
+}
+
+message OutboxRegisterOut {
+  string id = 1;
+}
+
+message ResponseRegisterIn {
+  string name = 1;
+  string url = 2;
+  HTTPMethod method = 3;
+  map<string, string> head = 4;
+}
+
+message ResponseRegisterOut {
+  string id = 1;
+}
+
+message TargetRegisterIn {
+  string name = 1;
+  bool forget = 2;
+  HTTPMethod method = 3;
+  map<string, string> head = 4;
+}
+
+message TargetRegisterOut {
+  string id = 1;
+}
+

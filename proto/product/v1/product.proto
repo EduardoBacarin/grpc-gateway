@@ -2,7 +2,7 @@ syntax = "proto3";
 package product.v1;
 
 option go_package = "github.com/eduardobacarin/tutorialgrpc/gen/product/v1";
-import "google/api/annotations.proto"
+import "google/api/annotations.proto";
 
 message Product {
 	string id = 1;
