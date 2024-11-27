@@ -6,8 +6,8 @@ import (
 	"net"
 	"os"
 
-	v1 "github.com/rschio/tutorialgrpc/gen/product/v1"
-	"github.com/rschio/tutorialgrpc/server"
+	v1 "github.com/eduardobacarin/grpc-gateway/gen/product/v1"
+	"github.com/eduardobacarin/grpc-gateway/server"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

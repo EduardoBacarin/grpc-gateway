@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: flow_service/flow_service.proto
 
-package flow
+package flow_service
 
 import (
 	context "context"

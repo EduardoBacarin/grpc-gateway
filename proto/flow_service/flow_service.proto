@@ -1,7 +1,7 @@
 syntax = "proto3";
 package kontrl;
 
-option go_package = "github.com/eduardobacarin/tutorialgrpc/gen/flow";
+option go_package = "github.com/eduardobacarin/grpc-gateway/gen/flow_service";
 import "google/api/annotations.proto";
 
 service Flow {

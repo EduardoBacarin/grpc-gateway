@@ -4,8 +4,10 @@ import (
 	"context"
 	"sync"
 
+	flow "gen/flow_service"
+
+	v1 "github.com/eduardobacarin/grpc-gateway/gen/product/v1"
 	"github.com/google/uuid"
-	v1 "github.com/rschio/tutorialgrpc/gen/product/v1"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -60,4 +62,11 @@ func (s *Server) ListProducts(ctx context.Context, req *v1.ListProductsRequest) 
 	}
 
 	return &v1.ListProductsResponse{Products: ps}, nil
+}
+
+func (s *Server) InboxFind(ctx context.Context, req *flow.InboxFind) (*flow.InboxGetOut, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	return &flow.InboxGetOut{}, nil
 }

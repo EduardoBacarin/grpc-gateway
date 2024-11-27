@@ -6,8 +6,8 @@ import (
 	"log"
 	"net/http"
 
+	v1 "github.com/eduardobacarin/grpc-gateway/gen/product/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	v1 "github.com/rschio/tutorialgrpc/gen/product/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

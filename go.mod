@@ -1,11 +1,11 @@
-module github.com/EduardoBacarin/tutorialgrpc
+module github.com/EduardoBacarin/grpc-gateway
 
 go 1.23.1
 
 require (
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.14.0
-	github.com/rschio/tutorialgrpc v0.0.0-20240427035159-8e8025fa0982
+	github.com/eduardobacarin/grpc-gateway v0.0.0-20240427035159-8e8025fa0982
 	google.golang.org/genproto/googleapis/api v0.0.0-20240903143218-8af14fe29dc1
 	google.golang.org/grpc v1.68.0
 	google.golang.org/protobuf v1.35.2

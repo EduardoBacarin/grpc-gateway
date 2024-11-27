@@ -2,11 +2,11 @@
 // source: flow_service/flow_service.proto
 
 /*
-Package flow is a reverse proxy.
+Package flow_service is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package flow
+package flow_service
 
 import (
 	"context"
